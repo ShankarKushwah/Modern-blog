@@ -1,0 +1,44 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+<div class="post">
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="intro-header" style="background-image: url('static/img/home-bg.jpg')">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                    <div class="site-heading">
+                        <h1>The Boyz Blog</h1>
+                        <hr class="large">
+                        <span class="subheading">A Blog Website by {{user}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+<form method='GET' action=''>
+<input type="text" name="q" placeholder="search" vlaue="{{request.GET.q}}"/>
+<input type="submit" class="btn btn-inverse" value="search"/>
+</form>
+</div></div></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+			<div class="post-preview">
+    {% for post in posts %}
+			    <a href="{% url 'post_detail' pk=post.pk %}"><h2 class="post-title">{{ post.title }}</h2></a>
+				<p class="post-meta">Posted by <a href="/">{{user}}</a> {{ post.published_date|date:"d-m-Y" }}</p>
+				<hr>
+    {% endfor %}
+			</div>
+	    </div>
+	</div>
+</div>
+
+{% endblock %}
